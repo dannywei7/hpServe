@@ -212,10 +212,10 @@ cat > /root/sup.sh  <<-EOF
 #!/bin/bash
 mkdir ./log
 
-nohup ./hpServe -proto http -port 8080 -userpass $your_userid:$your_pass  >/dev/null 2>./log/gost8080.log& 
+nohup ./hpServe -proto http -port 8080 -userpass $your_userid:$your_pass  >/dev/null 2>./log/hp8080.log& 
 
-nohup ./hpServe -port 8887 -userpass $your_userid:$your_pass  >/dev/null 2>./log/gost8887.log&
-nohup ./hpServe -port 8889 -userpass $your_userid:$your_pass  >/dev/null 2>./log/gost8889.log& 
+nohup ./hpServe -port 8887 -userpass $your_userid:$your_pass  >/dev/null 2>./log/hp8887.log&
+nohup ./hpServe -port 8889 -userpass $your_userid:$your_pass  >/dev/null 2>./log/hp8889.log& 
 
 ##ps aux|grep hpServe|grep -v grep|cut -c 9-15|xargs kill -15
 ##ps -ef |grep hpServe
