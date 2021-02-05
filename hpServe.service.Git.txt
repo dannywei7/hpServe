@@ -1,0 +1,12 @@
+[Unit]
+Description=hpServe
+Documentation=https://caddyserver.com/docs/
+After=network.target
+
+[Service]
+ExecStart=/root/hpServe -port $port -userpass $uid:pass -key /root/server.key -pem /root/server.pem
+ExecReload=ps aux|grep hpServe|grep -v grep|cut -c 9-15|xargs kill -15
+TimeoutStopSec=5s
+
+[Install]
+WantedBy=multi-user.target
