@@ -193,12 +193,22 @@ EOF
 systemctl enable caddy
 systemctl start caddy
 
+############### iptables
+iptables -I INPUT -p tcp --dport 8080 -j ACCEPT
+iptables -A INPUT -p tcp --dport 51000：60000 -j ACCEPT
+iptables-save
+apt-get install iptables-persistent
+netfilter-persistent save
+
+netfilter-persistent reload
 ########## get certificate and key ##########
 curl https://get.acme.sh | sh
-		~/.acme.sh/acme.sh  --issue  -d $your_domain  --webroot /var/www/html/
-			~/.acme.sh/acme.sh  --installcert  -d  $your_domain   \
-			--key-file   /root/server.key \
-			--fullchain-file /root/server.pem
+~/.acme.sh/acme.sh --register-account -m my@example.com
+~/.acme.sh/acme.sh  --issue  -d $your_domain  --webroot /var/www/html/ --server letsencrypt
+			
+~/.acme.sh/acme.sh  --installcert  -d  $your_domain   \
+--key-file   /root/server.key \
+--fullchain-file /root/server.pem
 
 ########## get hpServe ##########
 wget https://github.com/dannywei7/hpServe/raw/master/hpServeB14-linux.zip --no-check-certificate
